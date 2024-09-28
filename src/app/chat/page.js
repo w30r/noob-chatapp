@@ -1,5 +1,5 @@
 "use client";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import BubbleContainer from "../components/BubbleContainer";
 import MessageInput from "../components/MessageInput";
 import ChatHeader from "../components/ChatHeader";
@@ -16,10 +16,9 @@ const containerVariants = {
   },
 };
 
-
-
 export default function Page() {
   return (
+    // SIDE BAR 🌟🌟
     <motion.div
       variants={containerVariants}
       initial="hidden"
@@ -28,7 +27,7 @@ export default function Page() {
       className="flex"
     >
       <motion.div
-        className="bg-black h-screen w-1/4 p-9 text-4xl font-bold flex flex-col justify-between"
+        className="bg-black h-screen w-1/4 p-9 text-4xl font-bold hidden md:flex  md:flex-col md:justify-between"
         variants={{
           hidden: { y: 20, opacity: 0 },
           visible: { y: 0, opacity: 1 },
@@ -36,8 +35,9 @@ export default function Page() {
       >
         <SidebarContent />
       </motion.div>
+      {/*  THE RIGHT SIDE: CONVERSATION 🌟🌟 */}
       <motion.div
-        className="bg-black/10 h-screen w-3/4 p-2 flex flex-col"
+        className="bg-black/10 h-screen w-screen md:w-3/4 p-2 flex flex-col"
         variants={{
           hidden: { y: 20, opacity: 0 },
           visible: { y: 0, opacity: 1 },

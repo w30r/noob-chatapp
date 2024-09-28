@@ -1,5 +1,7 @@
 import ArrowLeftOnRectangleIcon from "@heroicons/react/24/outline/ArrowLeftOnRectangleIcon";
-import ChatPreviews from "../components/chatPreviews";
+import ChatPreviews from "./ChatPreviews";
+import Cog6ToothIcon from "@heroicons/react/24/outline/Cog6ToothIcon";
+import { useRouter } from "next/navigation";
 
 export default function SidebarContent() {
   const data = [
@@ -40,10 +42,18 @@ export default function SidebarContent() {
       image: "https://placehold.co/50x50",
     },
   ];
+
+  const router = useRouter();
   return (
     <>
       <div>
-        <h1 className="mb-8">CHATS</h1>
+        <div className="flex justify-between items-center mb-8">
+          <h1>CHATS</h1>
+          <Cog6ToothIcon
+            onClick={() => router.push("/settings")}
+            className="size-6 cursor-pointer"
+          />
+        </div>
         <div className="">
           <ChatPreviews chats={data} />
         </div>

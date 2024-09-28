@@ -17,7 +17,7 @@ export default function ChatPreviews({ chats }) {
           className="bg-white/10 shadow-purple-600 hover:bg-black/30 duration-150 shadow-sm p-4 max-h-24 rounded-md mb-4 flex items-center justify-start"
           key={x.id}
         >
-          <div className="bg-gray-500 size-8 mr-4  rounded-full" />
+          <div className="bg-gray-500 size-8 mr-4 min-h-8 min-w-8 rounded-full" />
           <div>
             <h1 className="text-xl">{x.name}</h1>
             <h1 className="text-sm text-white/50 font-medium">

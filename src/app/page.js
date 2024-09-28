@@ -28,7 +28,13 @@ const childVariants = {
 };
 
 export default function Home() {
-  const [username, setUsername] = useState("asdas");
+  const [username, setUsername] = useState("");
+
+  const handleStartChatting = () => {
+    setUsername("");
+    window.location.href = `/chat`;
+  };
+
   return (
     <AnimatePresence>
       <motion.div
@@ -47,8 +53,8 @@ export default function Home() {
         </motion.div>
         <motion.button
           variants={childVariants}
-          className="rounded-lg hover:bg-purple-500/80 duration-150 bg-purple-500 mt-2  px-4 py-2 text-white"
-          onClick={() => (window.location.href = `/chat`)}
+          className="select-none rounded-lg hover:bg-purple-500/80 duration-150 bg-purple-500 mt-4  px-4 py-2 text-white"
+          onClick={handleStartChatting}
         >
           Start chatting
         </motion.button>
