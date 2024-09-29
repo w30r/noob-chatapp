@@ -29,6 +29,7 @@ const childVariants = {
 
 export default function Home() {
   const [username, setUsername] = useState("");
+  const [password, setPw] = useState("");
 
   const handleStartChatting = () => {
     setUsername("");
@@ -45,11 +46,21 @@ export default function Home() {
         exit="hidden"
         className="h-screen w-screen  flex flex-col justify-center items-center"
       >
-        <motion.h1 variants={childVariants} className="text-5xl select-none">
+        <motion.h1 variants={childVariants} className="text-4xl select-none">
           SCHET APP
         </motion.h1>
         <motion.div variants={childVariants}>
           <UserNameInput setUsername={setUsername} />
+          <motion.div>
+            <div className="relative mt-2 rounded-md shadow-sm">
+              <input
+                type="password"
+                placeholder="Password"
+                className="block w-full rounded-md border-0 px-4 py-2 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2  focus:ring-purple-600 duration-200 transition-all sm:text-sm sm:leading-6"
+                onChange={(e) => setPw(e.target.value)}
+              />
+            </div>
+          </motion.div>
         </motion.div>
         <motion.button
           variants={childVariants}
