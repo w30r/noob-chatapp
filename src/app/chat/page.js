@@ -17,6 +17,7 @@ const containerVariants = {
 };
 
 export default function Page() {
+  
   return (
     // SIDE BAR 🌟🌟
     <motion.div
