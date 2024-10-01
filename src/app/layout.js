@@ -31,13 +31,18 @@ export default function RootLayout({ children }) {
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          {children}
+          <div className="bg-white/20 z-50 outline outline-1 outline-purple-600 backdrop-blur-lg rounded-b-lg absolute top-0 left-0 py-3 px-8 w-full">
+            <div className="flex justify-between items-center ">
+              <h1 className="text-4xl">SCHET APP</h1>
+              <SignedOut>
+                <SignInButton />
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </div>
+          </div>
+          <div className="mt-20">{children}</div>
         </body>
       </html>
     </ClerkProvider>
