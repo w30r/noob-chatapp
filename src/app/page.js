@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import UserNameInput from "./components/UserNameInput";
+import axios from "axios";
+import { redirect } from "next/dist/server/api-utils";
 
 const containerVariants = {
   hidden: {
@@ -32,9 +34,26 @@ export default function Home() {
   const [password, setPw] = useState("");
 
   const handleStartChatting = () => {
+    if (!username || !password) {
+      alert("Please enter both username and password");
+      return;
+    }
+
+    // call login api
+    axios
+      .post("http://127.0.0.1:8090/api/auth/login", {
+        username: username,
+        password: password,
+      })
+      .then(() => {
+        // set cookie
+        redirect("/chat");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
     setUsername("");
-    window.location.href = `/chat`;
-  };
+    window.location.href = `/chat`;  };
 
   return (
     <AnimatePresence>
@@ -50,7 +69,30 @@ export default function Home() {
           SCHET APP
         </motion.h1>
         <motion.div variants={childVariants}>
-          <UserNameInput setUsername={setUsername} />
+          <form
+            className="flex flex-col gap-4 mt-4"
+            onSubmit={handleStartChatting}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleStartChatting();
+              }
+            }}
+          >
+            <input
+              className="rounded-xl text-black px-4 py-2"
+              placeholder="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              className="rounded-xl text-purple-700 px-4 py-2"
+              placeholder="password"
+              value={password}
+              type="password"
+              onChange={(e) => setPw(e.target.value)}
+            />
+          </form>
+          {/* <UserNameInput setUsername={setUsername} />
           <motion.div>
             <div className="relative mt-2 rounded-md shadow-sm">
               <input
@@ -60,7 +102,7 @@ export default function Home() {
                 onChange={(e) => setPw(e.target.value)}
               />
             </div>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
         <motion.button
           variants={childVariants}
